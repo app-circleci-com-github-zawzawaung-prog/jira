@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>[#JRASERVER-20696] JIRA Submits no form data after 5 minutes - Actions such as CreateIssue will then failed with a session expiry</title>
+    <meta http-equiv="Content-Type" Content="application/vnd.ms-word; charset=UTF-8">
+        <style type="text/css">
+
+.tableBorder, .grid
+{
+    background-color: #fff;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tableBorder td, .grid td
+{
+    vertical-align: top;
+    padding: 2px;
+    border: 1px solid #ccc;
+}
+
+.noPadding
+{
+    padding: 0 !important;
+}
+
+h3 .subText
+{
+    font-size: 60%;
+    font-weight: normal;
+}
+
+.tabLabel
+{
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-bottom:none;
+    padding: 2px;
+    display: inline;
+}
+
+td.blank
+{
+    padding: 0;
+    margin: 0;
+}
+
+.blank td
+{
+    border: none;
+}
+
+#descriptionArea
+{
+    margin: 0;
+    padding: 2px;
+    border: 1px solid #ccc;
+}
+
+hr
+{
+    border-top:1px solid #aaa;
+}
+
+hr.fullcontent
+{
+  height: 15px;
+  padding: 10px 0;
+  background: #fff url('https://jira.atlassian.com/images/icons/hr.gif') no-repeat scroll center;
+}
+
+</style>
+
+</head>
+<body>
+
+<table class="tableBorder" cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td bgcolor="#f0f0f0" width="100%" colspan="2" valign="top">
+                            <h3 class="formtitle">
+                        [JRASERVER-20696]&nbsp;<a href="https://jira.atlassian.com/browse/JRASERVER-20696">JIRA Submits no form data after 5 minutes - Actions such as CreateIssue will then failed with a session expiry</a>
+            <span class="subText">
+               Created: 19/Mar/2010                   &nbsp;Updated: 18/Dec/2020
+
+                                                    &nbsp;Resolved: 22/Feb/2012
+                            </span>
+            </h3>
+        </td>
+    </tr>
+    <tr>
+        <td width="20%"><b>Status:</b></td>
+        <td width="80%">Closed</td>
+    </tr>
+    <tr>
+        <td width="20%"><b>Project:</b></td>
+        <td width="80%"><a href="https://jira.atlassian.com/secure/BrowseProject.jspa?id=10240">Jira Server and Data Center</a></td>
+    </tr>
+
+        <tr>
+            <td><b>Component/s:</b></td>
+            <td>
+                            None
+                </td>
+    </tr>
+    
+
+        <tr>
+            <td><b>Affects Version/s:</b></td>
+            <td>
+                                        <a title="4.0"
+                href="https://jira.atlassian.com/issues/?jql=project%3D10240%20AND%20%22affectedVersion%22%3D14091%20ORDER%20BY%20priority%20ASC"
+            >4.0</a>,                    <a title="4.1"
+                href="https://jira.atlassian.com/issues/?jql=project%3D10240%20AND%20%22affectedVersion%22%3D14244%20ORDER%20BY%20priority%20ASC"
+            >4.1</a>                        </td>
+    </tr>
+    
+
+        <tr>
+            <td><b>Fix Version/s:</b></td>
+            <td>
+                            None
+                </td>
+    </tr>
+    
+    </table>
+
+<br />
+<table class="grid" cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td bgcolor="#f0f0f0" valign="top" width="20%">
+            <b>Type:</b>
+        </td>
+        <td bgcolor="#ffffff" valign="top"  width="30%" >
+            Bug
+        </td>
+
+                    <td bgcolor="#f0f0f0">
+                <b>Priority:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top" nowrap>
+                Medium
+            </td>
+            </tr>
+    <tr>
+                        <td bgcolor="#f0f0f0" valign="top" width="20%">
+                <b>Reporter:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top"  width="30%" >
+                                            <a class="user-hover" rel="bbaker" id="word_reporter_bbaker" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=bbaker">ɹǝʞɐq pɐɹq</a>
+                            </td>
+        
+                    <td bgcolor="#f0f0f0" width="20%">
+                <b>Assignee:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top" nowrap  width="30%" >
+                                    Unassigned
+                            </td>
+            </tr>
+    	<tr>
+		<td bgcolor="#f0f0f0" width="20%">
+			<b>Resolution:</b>
+		</td>
+		<td bgcolor="#ffffff" valign="top" width="30%" nowrap>
+                            Duplicate
+                    </td>
+                    <td bgcolor="#f0f0f0" width="20%">
+                <b>Votes:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top" width="30%" nowrap>
+                10
+            </td>
+        
+    </tr>
+    
+        <tr>
+        <td bgcolor="#f0f0f0" width="20%">
+            <b>Labels:</b>
+        </td>
+        <td id="labels-103644-value" class="value" bgcolor="#ffffff" valign="top" colspan="3" nowrap>
+                            affects-server, bughunt_purge, test-coverage                    </td>
+    </tr>
+    
+    	<tr>
+        		<td bgcolor="#f0f0f0" width="20%"><b>Remaining Estimate:</b></td>
+        <td bgcolor="#ffffff" valign="top" nowrap width="80%" colspan="3">
+                            Not Specified
+            		</td>
+    </tr>
+    <tr>
+                <td bgcolor="#f0f0f0" width="20%"><b>Time Spent:</b></td>
+		<td bgcolor="#ffffff" valign="top" nowrap width="80%" colspan="3">
+                            Not Specified
+            		</td>
+	</tr>
+    <tr>
+                <td bgcolor="#f0f0f0" width="20%"><b>Original Estimate:</b></td>
+		<td bgcolor="#ffffff" valign="top" nowrap width="80%" colspan="3">
+                            Not Specified
+            		</td>
+    </tr>
+    
+    </table>
+
+
+
+    <br />
+
+    	<table class="grid" cellpadding="0" cellspacing="0" border="0" width="100%">
+            
+
+                <tr>
+            <td bgcolor="#f0f0f0" width=20% valign=top>
+                <b>Attachments:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top">
+                                    <img src="https://jira.atlassian.com/images/icons/attach/image.gif" height="16" width="16" border="0" alt="PNG File" role="presentation">
+                    2016-09-04_203108.png &nbsp;&nbsp;&nbsp;
+                                    <img src="https://jira.atlassian.com/images/icons/attach/image.gif" height="16" width="16" border="0" alt="JPEG File" role="presentation">
+                    FireFox7.0.1.jpg &nbsp;&nbsp;&nbsp;
+                                    <img src="https://jira.atlassian.com/images/icons/attach/image.gif" height="16" width="16" border="0" alt="PNG File" role="presentation">
+                    Safari_5.1.2.png &nbsp;&nbsp;&nbsp;
+                                    <img src="https://jira.atlassian.com/images/icons/attach/image.gif" height="16" width="16" border="0" alt="PNG File" role="presentation">
+                    Screenshot.png &nbsp;&nbsp;&nbsp;
+                                    <img src="https://jira.atlassian.com/images/icons/attach/image.gif" height="16" width="16" border="0" alt="JPEG File" role="presentation">
+                    screenshot-1.jpg &nbsp;&nbsp;&nbsp;
+                            </td>
+        </tr>
+        
+            <tr>
+            <td bgcolor="#f0f0f0" width="20%" valign="top">
+                <b>Issue Links:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top" class="noPadding">
+                <table cellpadding="0" cellspacing="0" border="0" width="100%" class="blank">
+                                            <tr>
+                            <td colspan="4" bgcolor="#f0f0f0">
+                                <b>Duplicate</b><br/>
+                            </td>
+                        </tr>
+                                    <tr>
+            <td>
+                duplicates
+            </td>
+            <td>
+                <a href="https://jira.atlassian.com/browse/JRASERVER-22667">
+                     <strike>JRASERVER-22667</strike>                 </a>
+            </td>
+            <td>
+                JIRA loses posted parameters if you a...
+            </td>
+            <td>
+                Closed
+            </td>
+        </tr>
+                                                                            <tr>
+                            <td colspan="4" bgcolor="#f0f0f0">
+                                <b>Reference</b><br/>
+                            </td>
+                        </tr>
+                                                                                            </table>
+            </td>
+        </tr>
+    
+
+
+
+                        <tr>
+                <td bgcolor="#f0f0f0" width="20%" valign="top"><b>Introduced in Version:</b></td>
+                <td id="customfield_19430-103644-value" class="value" bgcolor="#ffffff" width="80%">    4
+</td>
+            </tr>
+                                <tr>
+                <td bgcolor="#f0f0f0" width="20%" valign="top"><b>Bug Fix Policy:</b></td>
+                <td id="customfield_19330-103644-value" class="value" bgcolor="#ffffff" width="80%">    <a href="https://confluence.atlassian.com/support/atlassian-bug-fixing-policy-201294573.html" target="_blank" rel="noopener"> View Atlassian Server bug fix policy</a>
+</td>
+            </tr>
+            </table>
+
+    <br/>
+
+    <table cellpadding="2" cellspacing="0" border="0" width="100%" align="center">
+    <tr>
+        <td bgcolor="#bbbbbb" width="1%" nowrap align="center">
+            &nbsp;<font color="#ffffff"><b>Description</b></font>&nbsp;
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    </table>
+
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td id="descriptionArea">
+            <p>NOTE: The description for this bug is old. See Brads last 2 comments for the problem and potential solutions.</p>
+
+<p>There is a bug in FireFox 3.6 that causes it to POST zero parameters to the server.</p>
+
+<p>This tends to occur after say a 5 minutes time frame after say starting an issue and pressing submit.</p>
+
+<p><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=547239" class="external-link" target="_blank" rel="nofollow noopener">https://bugzilla.mozilla.org/show_bug.cgi?id=547239</a></p>
+
+<p>The bug report mentions that it has been fixed but at the time of this post, a new version of FireFox is not available.</p>
+
+<p>Our recommendation is to roll back to FireFox 3.5 or move up to FireFox 3.6.1 when it becomes available.</p>
+
+
+<p>MORE NOTES :</p>
+
+<p>Our QA staff have discovered the following</p>
+
+<blockquote>
+<p>This bug affects Windows/Linux(Ubuntu) when user has selected "Auto Detect proxy setting for network". If the option is "no proxy", its working fine without any issues.Tested with WinXp and Win Vista. </p>
+
+<p>Create Issue operation is working fine on Mac X.6 with FF 3.6 with both proxy set to no/Auto.</p></blockquote>
+
+            <br/>
+        </td>
+    </tr>
+    </table>
+
+    <br/>
+
+    <table cellpadding="2" cellspacing="0" border="0" width="100%" align="center">
+    <tr>
+        <td bgcolor="#bbbbbb" width="1%" nowrap align="center">
+            &nbsp;<font color="#ffffff"><b>Comments</b></font>&nbsp;
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    </table>
+
+    <table cellpadding="0" cellspacing="0" border="0" width="100%" class="grid" style="margin: 0;">
+                <tr id="comment-header-189486"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="ggaskell" id="word_commented_ggaskell" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=ggaskell">Giles Gaskell [Atlassian]</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">22/Mar/2010</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-189486"><td bgcolor="#ffffff">
+            <p>Additional information about symptoms from Brad:</p>
+<ul>
+	<li>In JIRA 4.0, you get an IssueCreate fail error.</li>
+	<li>In JIRA 4.1, you get the session token missing screen and a link to this JAC issue when 0 parameters are present.</li>
+</ul>
+
+        </td></tr>
+                <tr id="comment-header-189713"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="pwyatt" id="word_commented_pwyatt" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=pwyatt">Penny Wyatt (On Leave to July 2021)</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">24/Mar/2010</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-189713"><td bgcolor="#ffffff">
+            <p>This has been fixed in FireFox 3.6.2 on Windows.</p>
+        </td></tr>
+                <tr id="comment-header-189728"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="vbharara" id="word_commented_vbharara" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=vbharara">Veenu Bharara</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">24/Mar/2010</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-189728"><td bgcolor="#ffffff">
+            <p>Verifed with QA Bamboo build 351 on FF 3.6.2 on Linux, its fixed.</p>
+        </td></tr>
+                <tr id="comment-header-201363"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="cmclaughlin" id="word_commented_cmclaughlin" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=cmclaughlin">CharlesA</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">17/Jul/2010</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-201363"><td bgcolor="#ffffff">
+            <p>I just experienced this on JDOG and I'm using Firefox 3.6.3 on Linux. </p>
+        </td></tr>
+                <tr id="comment-header-216217"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="pleschev" id="word_commented_pleschev" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=pleschev">Peter Leschev</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">15/Nov/2010</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-216217"><td bgcolor="#ffffff">
+            <p>Hi Charles,</p>
+
+<p>can you please confirm whether you're still able to reproduce this one?</p>
+
+<p>Cheers,<br/>
+Peter</p>
+        </td></tr>
+                <tr id="comment-header-216345"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="cmclaughlin" id="word_commented_cmclaughlin" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=cmclaughlin">CharlesA</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">15/Nov/2010</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-216345"><td bgcolor="#ffffff">
+            <p>Peter, I do recall seeing the "token missing screen" recently.  Next time I see it I'll document it here.</p>
+        </td></tr>
+                <tr id="comment-header-216402"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="pleschev" id="word_commented_pleschev" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=pleschev">Peter Leschev</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">16/Nov/2010</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-216402"><td bgcolor="#ffffff">
+            <p>Hi Charles,</p>
+
+<p>Does the "token missing screen" contain a link to this issue? If not, then it sounds like a normal session timeout situation.</p>
+
+<p>Cheers,<br/>
+Peter</p>
+        </td></tr>
+                <tr id="comment-header-227565"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="mbowen" id="word_commented_mbowen" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=mbowen">Monica Bowen</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">09/Feb/2011</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-227565"><td bgcolor="#ffffff">
+            <p>Please note that I just received this error message while using IE8 - <b>not</b> Firefox</p>
+        </td></tr>
+                <tr id="comment-header-238751"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="marcin_cinik" id="word_commented_marcin_cinik" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=marcin_cinik">Marcin Cinik</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">15/Apr/2011</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-238751"><td bgcolor="#ffffff">
+            <p>I tried with IE 7.0.5730.13 and with Opera 11.10. The same behaviour as in the description.</p>
+        </td></tr>
+                <tr id="comment-header-239166"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="snekse" id="word_commented_snekse" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=snekse">Derek Eskens</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">19/Apr/2011</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-239166"><td bgcolor="#ffffff">
+            <p>Seem to be having the same problem on Chrome 10.0.648.204</p>
+        </td></tr>
+                <tr id="comment-header-239562"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="josephj" id="word_commented_josephj" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=josephj">Jimmy Joseph</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">21/Apr/2011</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-239562"><td bgcolor="#ffffff">
+            <p>This is reproducible in IE 8.0.7601.17514 too.<br/>
+It happened when I created a sub-task.</p>
+        </td></tr>
+                <tr id="comment-header-241378"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="pleschev" id="word_commented_pleschev" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=pleschev">Peter Leschev</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">22/Apr/2011</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-241378"><td bgcolor="#ffffff">
+            <p>@Monica<br/>
+@Marcin<br/>
+@Derek<br/>
+@Jimmy<br/>
+It is unlikely that you're experiencing this exact issue - can you please raise a separate issue which includes steps to reproduce &amp; screenshots of the error messages that you receive</p>
+        </td></tr>
+                <tr id="comment-header-269436"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="muralidharanmails@yahoo.co.in" id="word_commented_muralidharanmails@yahoo.co.in" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=muralidharanmails%40yahoo.co.in">Muralidharan N</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">19/Sep/2011</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-269436"><td bgcolor="#ffffff">
+            <p>The same problem exists in Firefox 6.0.2  Request to fix this</p>
+        </td></tr>
+                <tr id="comment-header-280127"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="annicka" id="word_commented_annicka" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=annicka">Annicka Rosengren</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">24/Nov/2011</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-280127"><td bgcolor="#ffffff">
+            <p>Same problem with JIRA 4.4.3 and FireFox 7.0.1 - Please fix!</p>
+        </td></tr>
+                <tr id="comment-header-292915"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="bigbaaadbob" id="word_commented_bigbaaadbob" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=bigbaaadbob">Robert Withrow</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">13/Feb/2012</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-292915"><td bgcolor="#ffffff">
+            <p>Same with Chrome 18.0.1025.11 beta on Ubuntu, and also it isn't 5 minutes.  Happens even if it only takes 20 seconds to create a new issue.  Generally going back and forward in the browser fixes this.  </p>
+
+<p>Please fix!!!!</p>
+        </td></tr>
+                <tr id="comment-header-292919"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="bbaker" id="word_commented_bbaker" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=bbaker">ɹǝʞɐq pɐɹq</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">13/Feb/2012</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-292919"><td bgcolor="#ffffff">
+            <p>This issue was created a while back when JIRA 4.0 was created and FireFox 3.6.0 has a definite bug.</p>
+
+<p>People who see this message are not likely to be actually experiencing that exact bug.  </p>
+
+<p>what is more likely is that they performed an POST operation that requires login after their session has timed out and the security system (Seraph) kicks in an redirects them to a login page.</p>
+
+<p>After the login Seraph redirects them back to the original URL but this time as a GET and with no data.  This is a known problem in Seraph when it "login intercepts" a POST operation.</p>
+
+<p>In terms of fixing this, its is in Seraph that we need to do make this fix.</p>
+        </td></tr>
+                <tr id="comment-header-292932"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="pslade@atlassian.com" id="word_commented_pslade@atlassian.com" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=pslade%40atlassian.com">sladey</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">13/Feb/2012</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-292932"><td bgcolor="#ffffff">
+            <p>on the back of Brad's conclusions I am making this a conventional JIRA bug and getting it into the bug fix queue.</p>
+        </td></tr>
+                <tr id="comment-header-511907"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="josesegerilis" id="word_commented_josesegerilis" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=josesegerilis">oskars jegeris</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">02/Sep/2013</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-511907"><td bgcolor="#ffffff">
+            <p>we made,we made all for you</p>
+        </td></tr>
+                <tr id="comment-header-559980"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="pnichols104" id="word_commented_pnichols104" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=pnichols104">Paul Nichols</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">17/Jan/2014</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-559980"><td bgcolor="#ffffff">
+            <p>Is there a solution/workaround to this yet?  It seems like this may be the problem with my script in jira-python to automatically add users to groups using the add_user_to_group function.</p>
+        </td></tr>
+                <tr id="comment-header-588799"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="dblack" id="word_commented_dblack" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=dblack">David Black</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">11/Apr/2014</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-588799"><td bgcolor="#ffffff">
+            <p><a href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=pnichols104" class="user-hover" rel="pnichols104">Paul Nichols</a> please open a new JIRA issue for the problem that you are experiencing.</p>
+        </td></tr>
+                <tr id="comment-header-656225"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="zzolkiewski" id="word_commented_zzolkiewski" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=zzolkiewski">Zbyszek Żółkiewski</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">14/Oct/2014</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-656225"><td bgcolor="#ffffff">
+            <p>i confirm this issue is present in latest jira 6.3.7</p>
+        </td></tr>
+                <tr id="comment-header-660605"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="jhu1" id="word_commented_jhu1" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=jhu1">Jordy Huisman</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">23/Oct/2014</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-660605"><td bgcolor="#ffffff">
+            <p>This problem is not resolved</p>
+        </td></tr>
+                <tr id="comment-header-682383"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="vverveda" id="word_commented_vverveda" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=vverveda">Admin Intersog</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">17/Dec/2014</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-682383"><td bgcolor="#ffffff">
+            <p>I experience it now, what is the workaround? when will it be finally fixed? </p>
+        </td></tr>
+                <tr id="comment-header-724721"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="james216" id="word_commented_james216" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=james216">James Lin</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">21/Apr/2015</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-724721"><td bgcolor="#ffffff">
+            <p>Hi,</p>
+
+<p>We are still experiencing the issue. It looks the bug is not fixed yet.</p>
+        </td></tr>
+                <tr id="comment-header-746589"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="david.skreiner" id="word_commented_david.skreiner" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=david.skreiner">David Skreiner</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">05/Jun/2015</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-746589"><td bgcolor="#ffffff">
+            <p>I just had a token-related error message immediately after trying to assign a new issue type scheme to a project, including a link to this issue. <span class="error">&#91;I did have about two dozen JIRA tabs open, I admit&#93;</span></p>
+
+<p>So erm ... this also happens in Chrome 43.0.2357.81 m. Are you sure it's the browser's fault?</p>
+        </td></tr>
+                <tr id="comment-header-773259"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="anastasiia.kvas" id="word_commented_anastasiia.kvas" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=anastasiia.kvas">Anastasiia Kvas</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">07/Aug/2015</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-773259"><td bgcolor="#ffffff">
+            <p>Hi! It's still the issue. Win 7, Crome 44.0.2403.130, JIRA v6.3.8</p>
+        </td></tr>
+                <tr id="comment-header-839369"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="3863" id="word_commented_3863" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=3863">AA BB</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">04/Dec/2015</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-839369"><td bgcolor="#ffffff">
+            <p>weewewr</p>
+        </td></tr>
+                <tr id="comment-header-885461"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="david.skreiner" id="word_commented_david.skreiner" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=david.skreiner">David Skreiner</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">16/Mar/2016</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-885461"><td bgcolor="#ffffff">
+            <p>Timeout while editing project schemes on v6.4.11, using Google Chrome, resulted in an error message pointing to this issue.</p>
+
+<p>I believe it was a simple "Server takes too long to respond" problem as frequently reported for JIRA. This was the first time I saw this message though.</p>
+        </td></tr>
+                <tr id="comment-header-913901"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="matt.parks1911044249" id="word_commented_matt.parks1911044249" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=matt.parks1911044249">Matt Parks</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">25/May/2016</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-913901"><td bgcolor="#ffffff">
+            <p>I am using Jira 6.2.7 and have seen this issue in both IE 11 and FF 39.</p>
+        </td></tr>
+                <tr id="comment-header-953036"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="saravanan.ravikumar1" id="word_commented_saravanan.ravikumar1" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=saravanan.ravikumar1">Saravanan Ravikumar</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">01/Sep/2016</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-953036"><td bgcolor="#ffffff">
+            <p>Hello,<br/>
+Am using 6.3.15 version even am facing the same error in Chrome 50<br/>
+any fix for this case.</p>
+
+        </td></tr>
+                <tr id="comment-header-953743"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="schaefer3" id="word_commented_schaefer3" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=schaefer3">Marc Schaefer</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">05/Sep/2016</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-953743"><td bgcolor="#ffffff">
+            <p>Hello I'm using v6.4.6 and the problem is appearing :</p>
+
+<p> <span class="image-wrap" style=""><a id="210994_thumb" href="https://jira.atlassian.com/secure/attachment/210994/210994_2016-09-04_203108.png" title="2016-09-04_203108.png" file-preview-type="image" file-preview-id="210994" file-preview-title="2016-09-04_203108.png"><img src="https://jira.atlassian.com/secure/thumbnail/210994/_thumb_210994.png" style="border: 0px solid black" /></a></span> </p>
+
+<ul>
+	<li>Firefox v47.0.1</li>
+	<li>Firefox v48.0.2</li>
+	<li>Crome v52.0.2743.116</li>
+</ul>
+
+        </td></tr>
+                <tr id="comment-header-975012"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="smriti.lohani1845670207" id="word_commented_smriti.lohani1845670207" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=smriti.lohani1845670207">Smriti Lohani</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">20/Oct/2016</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-975012"><td bgcolor="#ffffff">
+            <p>I am using Jira 6.4.11 and this issue occur very frequently in Chrome 53.0.</p>
+
+<p>Smriti</p>
+        </td></tr>
+                <tr id="comment-header-1051470"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="chris_hurst" id="word_commented_chris_hurst" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=chris_hurst">Chris Hurst</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">22/Feb/2017</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-1051470"><td bgcolor="#ffffff">
+            <p>Just had this occur to me. JIRA v6.3.13 on Chrome 56.0.2924.67 beta (64-bit)</p>
+        </td></tr>
+                <tr id="comment-header-1065328"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="edwyn.stapel227191043" id="word_commented_edwyn.stapel227191043" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=edwyn.stapel227191043">Edwyn Stapel</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">20/Mar/2017</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-1065328"><td bgcolor="#ffffff">
+            <p>we are seeing this issue now since upgrade to JIRA 7.2.3</p>
+        </td></tr>
+                <tr id="comment-header-1552322"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="erik.mathijs" id="word_commented_erik.mathijs" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=erik.mathijs">Erik Mathijs</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">26/Jun/2017</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-1552322"><td bgcolor="#ffffff">
+            <p>Since upgrading JIRA to version 7.3.6 we have the same problem.</p>
+
+<p>Clearing the browser cache resolves the problem not permanently.</p>
+        </td></tr>
+                <tr id="comment-header-1979493"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="kassy.coan" id="word_commented_kassy.coan" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=kassy.coan">Kassy Coan</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">15/May/2019</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-1979493"><td bgcolor="#ffffff">
+            <p>I'm in chrome and getting this issue when Bulk Edit changing priority, not on createissue</p>
+        </td></tr>
+                <tr id="comment-header-2026378"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="manderson17" id="word_commented_manderson17" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=manderson17">Mark Anderson</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">22/Aug/2019</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-2026378"><td bgcolor="#ffffff">
+            <p>im getting this error on all browsers for trying to clear the default for resolution field.</p>
+        </td></tr>
+                <tr id="comment-header-2027253"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="niccos" id="word_commented_niccos" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=niccos">Nicholas Costello</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">23/Aug/2019</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-2027253"><td bgcolor="#ffffff">
+            <p>I'm getting this error in chrome while using Bulk Edit in Jira Cloud.</p>
+        </td></tr>
+                <tr id="comment-header-2385196"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="jbarger.consultant" id="word_commented_jbarger.consultant" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=jbarger.consultant">Joel</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">02/Apr/2020</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-2385196"><td bgcolor="#ffffff">
+            <p>Getting this error as well. How is this marked closed?</p>
+        </td></tr>
+                <tr id="comment-header-2435944"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="160897b18b27" id="word_commented_160897b18b27" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=160897b18b27">lionel.fristot</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">15/Jun/2020</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-2435944"><td bgcolor="#ffffff">
+            <p>+1 With Brave Browser <img class="emoticon" src="https://jira.atlassian.com/images/icons/emoticons/smile.png" height="16" width="16" align="absmiddle" alt="" border="0"/></p>
+        </td></tr>
+                <tr id="comment-header-2455180"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="jherndon1" id="word_commented_jherndon1" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=jherndon1">John Herndon</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">10/Jul/2020</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-2455180"><td bgcolor="#ffffff">
+            <p>Happening to us when we try and publish a workflow. Was working fine most of the day and yesterday something stopped working. Tried latest versions of Chrome, Firefox, and Brave. Including Incognito.. flushed cache. Logout/login. restarted computer. tried second computer. Nothing works. Put in a support ticket. Still waiting for a response. Jira Cloud instance. I'm just adding this here because the error message links to this ancient bug, but the issue still persists.</p>
+        </td></tr>
+                <tr id="comment-header-2460200"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="m.osys" id="word_commented_m.osys" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=m.osys">Magdalena Osys</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">16/Jul/2020</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-2460200"><td bgcolor="#ffffff">
+            <p>The same problem as John Herndon described <img class="emoticon" src="https://jira.atlassian.com/images/icons/emoticons/sad.png" height="16" width="16" align="absmiddle" alt="" border="0"/> </p>
+        </td></tr>
+                <tr id="comment-header-2465266"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="9dfc4e0c3ef0" id="word_commented_9dfc4e0c3ef0" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=9dfc4e0c3ef0">ob</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">20/Jul/2020</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-2465266"><td bgcolor="#ffffff">
+            <p>Same here, issue occurs during publishing a new workflow version.</p>
+        </td></tr>
+                <tr id="comment-header-2468765"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="aa1165b3b35c" id="word_commented_aa1165b3b35c" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=aa1165b3b35c">Martin van der Marel</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">23/Jul/2020</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-2468765"><td bgcolor="#ffffff">
+            <p>Similar issue when publishing a edited workflow scheme. It gets stuck on step 1 of 2.</p>
+        </td></tr>
+                <tr id="comment-header-2474892"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="markcr" id="word_commented_markcr" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=markcr">Mark Crocker</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">02/Aug/2020</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-2474892"><td bgcolor="#ffffff">
+            <p>Yes see this issue on edit workflow scheme</p>
+        </td></tr>
+                <tr id="comment-header-2475776"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="9dfc4e0c3ef0" id="word_commented_9dfc4e0c3ef0" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=9dfc4e0c3ef0">ob</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">04/Aug/2020</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-2475776"><td bgcolor="#ffffff">
+            <p>Found also this: <a href="https://confluence.atlassian.com/jirakb/changing-workflow-scheme-results-in-xsrf-token-error-695111066.html" class="external-link" target="_blank" rel="nofollow noopener">https://confluence.atlassian.com/jirakb/changing-workflow-scheme-results-in-xsrf-token-error-695111066.html</a><br/>
+But what can users do who have the Cloud version of Jira?</p>
+        </td></tr>
+                <tr id="comment-header-2498473"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="2cacb94f4fb7" id="word_commented_2cacb94f4fb7" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=2cacb94f4fb7">knox_ner</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">09/Sep/2020</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-2498473"><td bgcolor="#ffffff">
+            <p>I am also seeing the same issue when editing a workflow scheme on Jira Cloud.</p>
+        </td></tr>
+                <tr id="comment-header-2540072"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="a46797cb7008" id="word_commented_a46797cb7008" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=a46797cb7008">Nicolas Revill</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">06/Oct/2020</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-2540072"><td bgcolor="#ffffff">
+            <p>Issue reproduced when publishing a new workflow that has no issues that are associated with it.</p>
+        </td></tr>
+                <tr id="comment-header-2553769"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="cbdcac9cd27e" id="word_commented_cbdcac9cd27e" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=cbdcac9cd27e">Sage Ashique</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">14/Oct/2020</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-2553769"><td bgcolor="#ffffff">
+            <p>Same as the above. Seeing this error when trying to publish a new workflow. </p>
+        </td></tr>
+                <tr id="comment-header-2601026"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="geoffrey.conte" id="word_commented_geoffrey.conte" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=geoffrey.conte">Geoffrey CONTE</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">24/Nov/2020</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-2601026"><td bgcolor="#ffffff">
+            <p>We have same issue but juste in 1 workflow scheme. <br/>
+I have remove all data in my browser, but nothing to do ! It does not work ! </p>
+
+<p>I have try to disable browser extension, but no change ! </p>
+
+<p>I'm on cloud version on my side.</p>
+
+<p> </p>
+        </td></tr>
+                <tr id="comment-header-2620825"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                        <a class="user-hover" rel="05ae652e2518" id="word_commented_05ae652e2518" href="https://jira.atlassian.com/secure/ViewProfile.jspa?name=05ae652e2518">Reilly Gray</a>
+                                        <font size="-2">
+            [
+                <font color="#336699">18/Dec/2020</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-2620825"><td bgcolor="#ffffff">
+            <p>I WANT TO MAKE IT CLEAR THIS IS NOT A BLOCKER FOR ME AT THE MOMENT.</p>
+
+<p>I am not able to select 'Contact an Administrator' from the Board Settings screen to access simplified workflow. I am using Chrome Browser Version 87.0.4280.88 (Official Build) (64-bit) at the moment, and my browser is telling me that I am up to date. </p>
+
+<p>I feel this is a nuisance, but I am able to contact my system administrator through another medium. </p>
+
+<p> </p>
+        </td></tr>
+            </table>
+Generated at Sun May 30 01:26:03 UTC 2021 using Jira 8.13.5#813005-sha1:c18f2634b18c40fabfba0c7874d6255f19b4f1c3.
+
+</body>
+</html>
